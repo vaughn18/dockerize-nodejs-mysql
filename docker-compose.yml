@@ -18,6 +18,9 @@ services:
     build: ./bezkoder-app
     restart: unless-stopped
     env_file: ./.env
+    volumes:
+      - ./:/app/bezkoder-app #Mounted for nodemon
+      - /app/bezkoder-app/node_modules # Remove this if you have pure JS dependencies
     ports:
       - $NODE_LOCAL_PORT:$NODE_DOCKER_PORT
     environment:
@@ -29,5 +32,5 @@ services:
     stdin_open: true
     tty: true
 
-volumes: 
+volumes:
   db:
